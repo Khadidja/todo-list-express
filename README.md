@@ -11,11 +11,10 @@ Users can add and delete items from the list.
 
 ### Item:
     title: String,
+    completed: { type: Boolean, default: false },
+    created: {type: Date, default: Date.now},
     user:
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }
+        id: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 
 ## RESTful Routes:
 
