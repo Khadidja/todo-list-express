@@ -11,6 +11,17 @@
 <a href="/lists">Return to all lists</a>
 
 <hr>
-{{#each list.items as |item|}}
-    <li>{{item.title}}</li>
-{{/each}}
+
+<div><a href="{{list.url}}/items/new">Add Item</a></div>
+
+<div>
+    {{#each list.items as |item|}}
+        <li>
+            {{item.title}}
+            <a href="{{../list.url}}/items/{{item._id}}/edit">Edit item</a>
+            <form action="{{../list.url}}/items/{{item._id}}?_method=DELETE" method="POST">
+                <button>Delete</button>
+            </form>
+        </li>
+    {{/each}}
+</div>
