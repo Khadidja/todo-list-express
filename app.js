@@ -3,7 +3,12 @@ var express = require('express'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    mongoose = require("mongoose"),
+    seedDB = require("./seeds");
+
+mongoose.connect("mongodb://localhost/todo_lists");
+//seedDB();
 
 var index = require('./routes/index'),
     users = require('./routes/users'),
