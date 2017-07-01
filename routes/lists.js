@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET all lists. */
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'TO-DO List' });
+    res.render('./lists/index', { title: 'My Lists' });
 });
 
 module.exports = router;
