@@ -33,3 +33,15 @@ Users can add and delete items from their list or mark them as completed.
 | Edit    | /lists/:id/edit | GET        | Show edit form for specific list       |
 | Update  | /lists/:id      | PUT        | Update details of specific list        |
 | Destroy | /lists/:id      | DELETE     | Delete specific list                   |
+
+### Items Routes:
+
+| Name    | Path                          | HTTP Verb  | Purpose                          |
+| ------- |-------------------------------| -----------| ---------------------------------|
+| Index   | /lists/:id/items              | GET        | Get all items belonging to list  |
+| New     | /lists/:id/items/new          | GET        | Show new item form               |
+| Create  | /lists/:id/items              | POST       | Create new item                  |
+| Show    | /lists/:id/items/:itemId      | GET        | Show details of specific item    |
+| Edit    | /lists/:id/items/:itemId/edit | GET        | Show edit form for specific item |
+| Update  | /lists/:id/items/:itemId      | PUT        | Update details of specific item  |
+| Destroy | /lists/:id/items/:itemId      | DELETE     | Delete specific item from list   |
