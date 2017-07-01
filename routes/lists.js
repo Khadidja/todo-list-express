@@ -27,7 +27,7 @@ router.post("/", function(req, res) {
 
 /* GET a list by id */
 router.get("/:id", function(req, res) {
-    List.findById(req.params.id, function(err, list) {
+    List.findById(req.params.id).populate("items").exec(function(err, list) {
         if (err) {
             console.log(err);
         } else {

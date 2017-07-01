@@ -13,7 +13,8 @@ mongoose.connect("mongodb://localhost/todo_lists");
 
 var index = require('./routes/index'),
     users = require('./routes/users'),
-    lists = require("./routes/lists");
+    lists = require("./routes/lists"),
+    items = require("./routes/items");
 
 
 var app = express();
@@ -27,7 +28,7 @@ app.use(methodOverride("_method"));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use("/lists", lists);
+app.use("/lists/:id/items", items);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
