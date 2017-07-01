@@ -1,0 +1,17 @@
+<div>
+    <div>
+        <h1 style="display:inline;">{{list.title}}</h1>
+        <a href="{{list.url}}/edit">Edit</a>
+        <form action="{{list.url}}?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
+    <div>
+    <p>Created on {{list.created_formatted}}</p>
+</div>
+<a href="/lists">Return to all lists</a>
+
+<hr>
+
+{{#each list.items as |item|}}
+    <li>item.title</li>
+{{/each}}

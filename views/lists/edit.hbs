@@ -1,0 +1,16 @@
+<div>
+    <div>
+        <form action="{{list.url}}?_method=PUT" method="POST">
+            <input type="text" name="list[title]" value="{{list.title}}">
+            <button>Update list</button>
+        </form>
+    <div>
+    <p>Created on {{list.created_formatted}}</p>
+</div>
+<a href="{{list.url}}">Cancel</a>
+
+<hr>
+
+{{#each list.items as |item|}}
+    <li>item.title</li>
+{{/each}}

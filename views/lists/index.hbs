@@ -1,5 +1,18 @@
 <h1>All Lists</h1>
 
-{{#each lists as |list|}}
-    <li>{{list.title}}</li>
-{{/each}}
+<div>
+<form action="/lists" method="POST">
+    <input type="text" name="list[title]" placeholder="New list title">
+    <button>Add new list</button>
+</form>
+</div>
+
+{{#if lists}}
+    <div>
+        <ul>
+            {{#each lists as |list|}}
+                <li><a href="{{list.url}}">{{list.title}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+{{/if}}

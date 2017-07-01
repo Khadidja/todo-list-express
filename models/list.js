@@ -1,4 +1,5 @@
-var mongoose = require("mongoose");
+var mongoose = require("mongoose"),
+    moment = require("moment");
 
 var ListSchema = new mongoose.Schema({
     title: String,
@@ -7,5 +8,16 @@ var ListSchema = new mongoose.Schema({
     items: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item" }]
 });
 
+ListSchema
+    .virtual('created_formatted')
+    .get(function() {
+        return moment(this.created).format("dddd, MMMM Do YYYY, h:mm a");
+    });
+
+ListSchema
+    .virtual('url')
+    .get(function() {
+        return '/lists/' + this._id;
+    });
 
 module.exports = mongoose.model("List", ListSchema);
