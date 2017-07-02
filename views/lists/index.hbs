@@ -1,18 +1,41 @@
-<h1>All Lists</h1>
-
-<div>
-<form action="/lists" method="POST">
-    <input type="text" name="list[title]" placeholder="New list title">
-    <button>Add new list</button>
-</form>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form class="form-padding" action="/lists" method="POST">
+            <div class="input-group input-group-lg">
+                <input class="form-control" type="text" name="list[title]" placeholder="New list title">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Add new list</button>
+                </span>
+            </div>
+        </form>
+    </div>
 </div>
 
 {{#if lists}}
-    <div>
-        <ul>
-            {{#each lists as |list|}}
-                <li><a href="{{list.url}}">{{list.title}}</a></li>
-            {{/each}}
-        </ul>
+<div class="row">
+    {{#each lists as |list|}}
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left">{{list.title}}</h3>
+                <form class="pull-right" action="{{list.url}}?_method=DELETE" method="POST">
+                    <div class="input-group">
+                        <button class="btn btn-danger btn-sm pull-right">Delete</button>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-body clearfix">
+                <p class="pull-left">Created&nbsp;{{list.created_time_from_now}}</p>
+                {{#if list.items}}
+                <a class="btn btn-default pull-right" href="{{list.url}}">
+                    Items&nbsp;<span class="badge">{{list.items.length}}</span>
+                </a>
+                {{else}}
+                <a class="btn btn-default pull-right" href="{{list.url}}"> Add Items</a>
+                {{/if}}
+            </div>
+        </div>
     </div>
+    {{/each}}
+</div>
 {{/if}}

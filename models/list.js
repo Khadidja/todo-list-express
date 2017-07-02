@@ -15,6 +15,12 @@ ListSchema
     });
 
 ListSchema
+    .virtual("created_time_from_now")
+    .get(function() {
+        return moment(this.created).fromNow();
+    });
+
+ListSchema
     .virtual('url')
     .get(function() {
         return '/lists/' + this._id;
