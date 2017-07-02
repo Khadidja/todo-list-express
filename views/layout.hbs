@@ -44,7 +44,10 @@
   </footer>
   <script src="/javascripts/libraries/jquery-3.2.1.min.js"></script>
   <script src="/javascripts/libraries/bootstrap.min.js"></script>
-  <script src="/javascripts/script.js"></script>
+  {{#if customScript}}
+  <script src="/javascripts/{{customScript}}"></script>
+  {{/if}}
+  
 </body>
 
 </html>

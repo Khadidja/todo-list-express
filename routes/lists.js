@@ -31,7 +31,7 @@ router.get("/:id", function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("./lists/show", { customStylesheet: "list.css", list: list });
+            res.render("./lists/show", { customStylesheet: "list.css", customScript: "list.js", list: list });
         }
     });
 });

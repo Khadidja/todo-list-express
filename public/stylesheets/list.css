@@ -1,0 +1,41 @@
+.items-list li {
+    cursor: pointer;
+    transition: 0.2s;
+    background: #eee;
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.items-list li:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+.items-list li:hover {
+    background: #ddd;
+}
+
+.items-list li.completed {
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+}
+
+.close:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+.close-form {
+    display: inline;
+}
+
+.complete-form {
+    display: inline;
+}
+
+#complete-form-btn {
+    display: none;
+}

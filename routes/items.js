@@ -4,15 +4,15 @@ var express = require('express'),
     Item = require("../models/item");
 
 /* GET new item form */
-router.get('/new', function(req, res) {
-    List.findById(req.params.id).populate("items").exec(function(err, list) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.render("./items/new", { title: "New Item", list: list });
-        }
-    });
-});
+// router.get('/new', function(req, res) {
+//     List.findById(req.params.id).populate("items").exec(function(err, list) {
+//         if (err) {
+//             res.send(err);
+//         } else {
+//             res.render("./items/new", { title: "New Item", list: list });
+//         }
+//     });
+// });
 
 /* POST to create item */
 router.post("/", function(req, res) {
