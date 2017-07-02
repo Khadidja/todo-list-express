@@ -42,6 +42,9 @@ router.get("/:itemId/edit", function(req, res) {
 
 /* PUT item updates */
 router.put("/:itemId", function(req, res) {
+    if (req.body.item.completed) {
+        req.body.item.completed = req.body.item.completed === "true" ? false : true;
+    }
     Item.findByIdAndUpdate(req.params.itemId, req.body.item, function(err) {
         if (err) {
             res.send(err);

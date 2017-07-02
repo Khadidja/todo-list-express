@@ -27,7 +27,17 @@
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
         <ul class="list-group items-list" id="items-list-id">
             {{#each list.items as |item|}}
-            <li class="list-group-item">
+            <li class="list-group-item {{#if item.completed}}completed{{/if}}">
+                <form class="completed-form" action="{{../list.url}}/items/{{item.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="item[completed]" value="{{item.completed}}">
+                    <button class="btn btn-xs" type="submit">
+                        {{#if item.completed}}
+                        &#10004;
+                        {{else}}
+                        &nbsp;&nbsp;&nbsp;
+                        {{/if}}
+                    </button>
+                </form>
                 {{item.title}}
                 <form class="close-form" action="{{../list.url}}/items/{{item.id}}?_method=DELETE" method="POST">
                     <button type="submit" class="close">

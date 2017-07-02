@@ -45,3 +45,8 @@ Users can add and delete items from their list or mark them as completed.
 | Edit    | /lists/:id/items/:itemId/edit | GET        | Show edit form for specific item |
 | Update  | /lists/:id/items/:itemId      | PUT        | Update details of specific item  |
 | Destroy | /lists/:id/items/:itemId      | DELETE     | Delete specific item from list   |
+
+
+### TO-DOs:
+
+[] Fix reference delete 
