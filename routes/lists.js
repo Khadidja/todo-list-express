@@ -38,11 +38,11 @@ router.get("/:id", function(req, res) {
 
 /* GET a list by id to edit */
 router.get("/:id/edit", function(req, res) {
-    List.findById(req.params.id, function(err, list) {
+    List.findById(req.params.id).populate("items").exec(function(err, list) {
         if (err) {
             console.log(err);
         } else {
-            res.render("./lists/edit", { list: list });
+            res.render("./lists/edit", { customStylesheet: "list.css", customScript: "list.js", list: list });
         }
     });
 });

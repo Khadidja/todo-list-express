@@ -1,5 +1,7 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'),
+    router = express.Router(),
+    passport = require("passport"),
+    User = require("../models/user");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,22 +15,33 @@ router.get('/signup', function(req, res, next) {
 
 /* POST user sign up */
 router.post('/signup', function(req, res, next) {
-    res.send("Post sign up");
+    var newUser = new User({ username: req.body.username });
+    User.register(newUser, req.body.password, function(err, user) {
+        if (err) {
+            return res.send(err);
+        }
+        passport.authenticate("local")(req, res, function() {
+            res.redirect("/lists");
+        });
+    });
 });
 
 /* GET log in page */
 router.get('/login', function(req, res, next) {
-    res.send("Log in page");
+    res.render("login");
 });
 
 /* POST user log in */
-router.get('/login', function(req, res, next) {
-    res.send("Post log in page");
-});
+router.post("/login", passport.authenticate("local", {
+    successRedirect: "/lists",
+    failureRedirect: "/login"
+}), function(req, res) {});
 
 /* GET log out */
-router.get('/logout', function(req, res, next) {
-    res.send("Log out");
+router.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
 });
+
 
 module.exports = router;

@@ -5,13 +5,19 @@
             <p class="text-center text-muted">
                 <small>Created&nbsp;on&nbsp;{{list.created_formatted}}</small>
             </p>
+            <a class="btn btn-warning btn-sm" href="{{list.url}}/edit">Edit title</a>
+            <form class="pull-right" action="{{list.url}}?_method=DELETE" method="POST">
+                <div class="input-group">
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <form class="form" action="{{list.url}}/items" method="POST">
+        <form id="add-item-form" action="{{list.url}}/items" method="POST">
             <div class="input-group">
                 <input class="form-control" type="text" name="item[title]" placeholder="New item...">
                 <span class="input-group-btn">

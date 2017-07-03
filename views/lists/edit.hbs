@@ -1,16 +1,37 @@
-<div>
-    <div>
-        <form action="{{list.url}}?_method=PUT" method="POST">
-            <input type="text" name="list[title]" value="{{list.title}}">
-            <button>Update list</button>
-        </form>
-    <div>
-    <p>Created on {{list.created_formatted}}</p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <form class="form-inline text-center" action="{{list.url}}?_method=PUT" method="POST">
+                <div class="input-group">
+                    <input class="form-control text-center" type="text" name="list[title]" value="{{list.title}}">
+                </div>
+                <div class="input-group">
+                    <button class="btn btn-primary" type="submit">Update title</button>
+                </div>
+            </form>
+            <p class="text-center text-muted">
+                <small>Created&nbsp;on&nbsp;{{list.created_formatted}}</small>
+            </p>
+            <a class="btn btn-default btn-sm" href="{{list.url}}">Cancel</a>
+            <form class="pull-right" action="{{list.url}}?_method=DELETE" method="POST">
+                <div class="input-group">
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-<a href="{{list.url}}">Cancel</a>
 
-<hr>
-
-{{#each list.items as |item|}}
-    <li>item.title</li>
-{{/each}}
+{{#if list.items}}
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
+        <ul class="list-group items-list" id="items-list-id">
+            {{#each list.items as |item|}}
+            <li class="list-group-item {{#if item.completed}}completed{{/if}}">
+                {{item.title}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+{{/if}}

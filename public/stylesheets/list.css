@@ -35,3 +35,7 @@
 .completed-form {
     display: inline;
 }
+
+#add-item-form {
+    padding: 20px;
+}

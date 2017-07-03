@@ -6,6 +6,9 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require("mongoose"),
     methodOverride = require("method-override"),
+    passport = require("passport"),
+    LocalStrategy = require("passport-local"),
+    User = require("./models/user"),
     seedDB = require("./seeds");
 
 mongoose.connect("mongodb://localhost/todo_lists");
@@ -23,7 +26,26 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+// method override to execute non-post form submissions
 app.use(methodOverride("_method"));
+
+// passport setup
+app.use(require("express-session")({
+    secret: "Learning Express JS",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// global response variables
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
