@@ -15,7 +15,6 @@ mongoose.connect("mongodb://localhost/todo_lists");
 //seedDB();
 
 var index = require('./routes/index'),
-    users = require('./routes/users'),
     lists = require("./routes/lists"),
     items = require("./routes/items");
 
@@ -56,7 +55,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
 app.use("/lists", lists);
 app.use("/lists/:id/items", items);
 
