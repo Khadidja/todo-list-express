@@ -1,10 +1,11 @@
 var express = require('express'),
     router = express.Router(),
     List = require('../models/list'),
-    Item = require("../models/item");
+    Item = require("../models/item"),
+    middleware = require("../middleware");
 
 /* GET all lists. */
-router.get('/', function(req, res) {
+router.get('/', middleware.isLoggedIn, function(req, res) {
     List.find({ user: req.user._id }, function(err, lists) {
         if (err) {
             res.send(err);
@@ -16,7 +17,7 @@ router.get('/', function(req, res) {
 });
 
 /* POST to create a list */
-router.post("/", function(req, res) {
+router.post("/", middleware.isLoggedIn, function(req, res) {
     var newList = new List({
         title: req.body.list.title,
         user: req.user.id
@@ -32,7 +33,7 @@ router.post("/", function(req, res) {
 
 
 /* GET a list by id */
-router.get("/:id", function(req, res) {
+router.get("/:id", middleware.isLoggedIn, function(req, res) {
     List.findById(req.params.id, function(err, list) {
         if (err) {
             console.log(err);
@@ -54,7 +55,7 @@ router.get("/:id", function(req, res) {
 });
 
 /* GET a list by id to edit */
-router.get("/:id/edit", function(req, res) {
+router.get("/:id/edit", middleware.isLoggedIn, function(req, res) {
     List.findById(req.params.id).populate("items").exec(function(err, list) {
         if (err) {
             console.log(err);
@@ -65,7 +66,7 @@ router.get("/:id/edit", function(req, res) {
 });
 
 /* PUT to update list by id */
-router.put("/:id", function(req, res) {
+router.put("/:id", middleware.isLoggedIn, function(req, res) {
     List.findByIdAndUpdate(req.params.id, req.body.list, function(err, list) {
         if (err) {
             res.send(err);
@@ -76,7 +77,7 @@ router.put("/:id", function(req, res) {
 });
 
 /* DELETE list by id */
-router.delete("/:id", function(req, res) {
+router.delete("/:id", middleware.isLoggedIn, function(req, res) {
     List.findByIdAndRemove(req.params.id, function(err, removedList) {
         if (err) {
             res.send(err);

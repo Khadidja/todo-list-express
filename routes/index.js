@@ -1,7 +1,8 @@
 var express = require('express'),
     router = express.Router(),
     passport = require("passport"),
-    User = require("../models/user");
+    User = require("../models/user"),
+    middleware = require("../middleware");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -38,7 +39,7 @@ router.post("/login", passport.authenticate("local", {
 }), function(req, res) {});
 
 /* GET log out */
-router.get("/logout", function(req, res) {
+router.get("/logout", middleware.isLoggedIn, function(req, res) {
     req.logout();
     res.redirect("/");
 });
