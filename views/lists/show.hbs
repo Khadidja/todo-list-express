@@ -28,11 +28,11 @@
     </div>
 </div>
 
-{{#if list.items}}
+{{#if items}}
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
         <ul class="list-group items-list" id="items-list-id">
-            {{#each list.items as |item|}}
+            {{#each items as |item|}}
             <li class="list-group-item {{#if item.completed}}completed{{/if}}">
                 <form class="completed-form" action="{{../list.url}}/items/{{item.id}}?_method=PUT" method="POST">
                     <input type="hidden" name="item[completed]" value="{{item.completed}}">

@@ -1,11 +1,11 @@
 var mongoose = require("mongoose"),
-    moment = require("moment");
+    moment = require("moment"),
+    Item = require("./item");
 
 var ListSchema = new mongoose.Schema({
     title: String,
     created: { type: Date, default: Date.now },
-    user: { id: { type: mongoose.Schema.Types.ObjectId, ref: "User" } },
-    items: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item" }]
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 });
 
 ListSchema

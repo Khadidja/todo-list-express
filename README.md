@@ -12,14 +12,14 @@ Users can add and delete items from their list or mark them as completed.
 ### Item:
     title: String,
     completed: { type: Boolean, default: false },
-    created: {type: Date, default: Date.now}
+    created: {type: Date, default: Date.now},
+    listId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 
 ### List:
     title: String,
     created: {type: Date, default: Date.now},
-    user: { id: { type: mongoose.Schema.Types.ObjectId, ref: "User" } },
-    items: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item" }]
-
+    userId: id: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
+    
 ## RESTful Routes:
 
 ### List Routes:
@@ -46,7 +46,3 @@ Users can add and delete items from their list or mark them as completed.
 | Update  | /lists/:id/items/:itemId      | PUT        | Update details of specific item  |
 | Destroy | /lists/:id/items/:itemId      | DELETE     | Delete specific item from list   |
 
-
-### TO-DOs:
-
-[] Fix reference delete 

@@ -16,16 +16,16 @@ var express = require('express'),
 
 /* POST to create item */
 router.post("/", function(req, res) {
-    List.findById(req.params.id, function(err, list) {
-        Item.create(req.body.item, function(err, item) {
-            if (err) {
-                res.send(err);
-            } else {
-                list.items.push(item);
-                list.save();
-                res.redirect(list.url);
-            }
-        });
+    var item = new Item({
+        title: req.body.item.title,
+        listId: req.params.id
+    });
+    Item.create(item, function(err, item) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.redirect("/lists/" + req.params.id);
+        }
     });
 });
 
